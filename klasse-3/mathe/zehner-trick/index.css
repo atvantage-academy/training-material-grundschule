@@ -1,0 +1,99 @@
+/* Der Zehner-Trick: eine Rechenheft-Seite – Aufgabe, Rechenkette, Sprechblase, Feld aus
+   Zehnerreihen, Lob. Farben und Schrift aus den Tokens von Skriptorium, Theme und
+   Erweiterung – so ziehen dunkles Farbschema und Druck mit. */
+.zehner-trick {
+  --bg: var(--skr-color-bg-subtle);
+  --paper: var(--skr-color-bg);
+  --grid: var(--skr-color-border);
+  --fg: var(--skr-color-ink);
+  --muted: var(--skr-color-ink-muted);
+  --cell: var(--skr-color-accent);
+  --cell-ink: var(--skr-color-accent-contrast);
+  --cell-soft: var(--skr-color-accent-soft);
+  --minus: var(--skr-color-danger);
+  --minus-soft: color-mix(in srgb, var(--skr-color-danger) 20%, var(--skr-color-bg));
+  --plus: var(--skr-color-success);
+  --plus-soft: color-mix(in srgb, var(--skr-color-success) 22%, var(--skr-color-bg));
+  --sun: var(--skr-didaktikon-tone-3);
+  --f-display: var(--skr-font-sans);
+  --f-body: var(--skr-font-sans);
+  max-width: 720px; margin: 0 auto; padding-block: 0 48px; display: flex; flex-direction: column; gap: 18px;
+  color: var(--fg); font-family: var(--f-body); font-size: 17px; line-height: 1.5;
+}
+.zehner-trick .text { display: flex; flex-direction: column; gap: 16px; }
+
+.zehner-trick .setup { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; }
+.zehner-trick .setup label { display: flex; flex-direction: column; font-size: 12px; font-weight: 800; color: var(--muted); letter-spacing: .06em; text-transform: uppercase; gap: 4px; }
+.zehner-trick input[type=number] { width: 84px; font: 700 28px/1 var(--f-display); padding: 6px 8px; border: 2px solid var(--grid); border-radius: 12px; background: var(--paper); color: var(--fg); text-align: center; -moz-appearance: textfield; }
+.zehner-trick input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+.zehner-trick .setup .op { font: 800 32px/1 var(--f-display); padding-bottom: 10px; }
+.zehner-trick button { font: 800 16px/1 var(--f-body); border-radius: 12px; border: 2px solid transparent; padding: 12px 18px; cursor: pointer; }
+.zehner-trick button:focus-visible, .zehner-trick input:focus-visible, .zehner-trick .cell:focus-visible { outline: 3px solid var(--sun); outline-offset: 2px; }
+.zehner-trick .btn-main { background: var(--cell); color: var(--cell-ink); }
+.zehner-trick .btn-ghost { background: var(--paper); border-color: var(--grid); color: var(--fg); }
+.zehner-trick .btn-ghost:hover { border-color: var(--muted); }
+.zehner-trick .warn { color: var(--minus); font-weight: 700; margin: 0; }
+.zehner-trick .sheet { background: var(--paper); border-radius: 20px; padding: 20px clamp(14px, 3vw, 26px); display: flex; flex-direction: column; gap: 16px; position: relative; overflow: hidden; }
+.zehner-trick .chain { font: 700 clamp(24px, 6vw, 36px)/1.25 var(--f-display); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .3em; }
+.zehner-trick .c-minus { color: var(--minus); }
+.zehner-trick .c-plus { color: var(--plus); }
+.zehner-trick .c-cell { color: var(--cell); }
+.zehner-trick .part { transition: opacity .4s; }
+.zehner-trick .part.off { opacity: 0; }
+.zehner-trick .res { border-bottom: 4px solid currentColor; min-width: 1.3em; display: inline-block; text-align: center; }
+.zehner-trick .bubble { background: var(--cell-soft); border-radius: 16px; padding: 14px 16px; font-size: clamp(18px, 4.4vw, 21px); font-weight: 700; line-height: 1.4; }
+.zehner-trick .bubble b { font-family: var(--f-display); font-size: 1.15em; }
+.zehner-trick .hint { font-size: 16px; font-weight: 600; color: var(--muted); margin-top: 6px; }
+.zehner-trick .hint.bad { color: var(--minus); }
+.zehner-trick .counters { display: flex; flex-wrap: wrap; gap: 8px; }
+.zehner-trick .chip { font: 800 14px/1 var(--f-body); padding: 8px 12px; border-radius: 999px; background: var(--bg); border: 2px solid var(--grid); font-variant-numeric: tabular-nums; }
+.zehner-trick .chip.minus { color: var(--minus); border-color: var(--minus-soft); }
+.zehner-trick .chip.plus { color: var(--plus); border-color: var(--plus-soft); }
+.zehner-trick .chip.full { background: var(--fg); color: var(--paper); border-color: var(--fg); }
+.zehner-trick .field { display: flex; flex-direction: column; gap: 7px; align-self: center; width: 100%; max-width: 460px; }
+.zehner-trick .row { display: flex; gap: 10px; align-items: center; border-radius: 10px; padding: 3px; transition: background .2s; }
+.zehner-trick .row.tap { cursor: pointer; }
+.zehner-trick .row.tap:hover { background: var(--cell-soft); }
+.zehner-trick .half { flex: 1; display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+.zehner-trick .cell { aspect-ratio: 1; border-radius: 6px; background: var(--cell); position: relative; border: 0; padding: 0; transition: background .3s, opacity .3s, transform .2s; }
+.zehner-trick .cell.empty { background: transparent; outline: 2px dashed var(--grid); outline-offset: -2px; }
+.zehner-trick .cell.struck { background: var(--minus-soft); }
+.zehner-trick .cell.struck::before, .zehner-trick .cell.struck::after { content: ""; position: absolute; left: 12%; right: 12%; top: 50%; height: 3px; border-radius: 2px; background: var(--minus);
+  transform-origin: left center; animation: zt-slash .25s ease-out both; animation-delay: var(--d, 0s); }
+.zehner-trick .cell.struck::before { transform: rotate(45deg) scaleX(0); --r: 45deg; }
+.zehner-trick .cell.struck::after { transform: rotate(-45deg) scaleX(0); --r: -45deg; transform-origin: right center; }
+.zehner-trick .cell.struck.still::before, .zehner-trick .cell.struck.still::after { animation: none; transform: rotate(var(--r)) scaleX(1); }
+@keyframes zt-slash { from { transform: rotate(var(--r)) scaleX(0); } to { transform: rotate(var(--r)) scaleX(1); } }
+.zehner-trick .cell.back { background: var(--plus); animation: zt-bounce .45s ease-out; }
+.zehner-trick .cell.slot { cursor: pointer; outline-color: var(--plus); animation: zt-pulse 1.2s ease-in-out infinite; }
+.zehner-trick .cell.slot:hover { background: var(--plus-soft); transform: scale(1.1); }
+.zehner-trick .half.tap { cursor: pointer; border-radius: 8px; outline: 2px dashed var(--minus); outline-offset: 2px; }
+.zehner-trick .half.tap:hover { background: var(--minus-soft); }
+.zehner-trick .cell.live { cursor: pointer; }
+.zehner-trick .cell.live:hover { transform: scale(1.12); box-shadow: 0 0 0 2px var(--minus); }
+@keyframes zt-pulse { 50% { background: var(--plus-soft); } }
+@keyframes zt-bounce { 0% { transform: scale(.4); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
+.zehner-trick .rowlabel { font: 700 15px/1 var(--f-display); color: var(--muted); width: 2.2em; text-align: right; font-variant-numeric: tabular-nums; }
+.zehner-trick .ask { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.zehner-trick .ask span { font: 700 24px/1 var(--f-display); }
+.zehner-trick .praise { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.zehner-trick .praise div { font: 800 clamp(34px, 9vw, 60px)/1 var(--f-display); color: var(--sun); text-shadow: 0 3px 0 var(--paper), 0 0 18px var(--paper);
+  animation: zt-praise 1.6s ease-out both; text-align: center; padding: 0 12px; }
+@keyframes zt-praise { 0% { opacity: 0; transform: scale(.4) rotate(-6deg); } 18% { opacity: 1; transform: scale(1.1) rotate(2deg); } 30% { transform: scale(1) rotate(0); } 80% { opacity: 1; } 100% { opacity: 0; transform: translateY(-30px); } }
+.zehner-trick .star { position: absolute; color: var(--sun); font-size: 26px; animation: zt-star 1.2s ease-out both; }
+@keyframes zt-star { from { opacity: 1; transform: translate(0,0) scale(.5); } to { opacity: 0; transform: translate(var(--x), var(--y)) scale(1.3) rotate(180deg); } }
+.zehner-trick .final { font: 800 clamp(26px, 6vw, 34px)/1.2 var(--f-display); color: var(--plus); }
+.zehner-trick .nav { display: flex; gap: 10px; flex-wrap: wrap; }
+@media (prefers-reduced-motion: reduce) {
+  .zehner-trick *, .zehner-trick *::before, .zehner-trick *::after { animation-duration: .01s !important; animation-delay: 0s !important; transition: none !important; }
+}
+.zehner-trick *, .zehner-trick *::before, .zehner-trick *::after { box-sizing:border-box }
+.zehner-trick [hidden] { display:none!important }
+
+/* Querformat: Rechenkette und Anleitung links neben dem Feld; das Feld so groß, dass alle
+   Reihen auf den Bildschirm passen. */
+@media (min-width: 860px) and (orientation: landscape) {
+  .zehner-trick { max-width: 1040px; }
+  .zehner-trick .sheet { display: grid; grid-template-columns: minmax(280px, 1fr) auto; align-items: start; gap: 28px; }
+  .zehner-trick .field { width: clamp(320px, calc(100svh - 260px), 480px); max-width: none; }
+}

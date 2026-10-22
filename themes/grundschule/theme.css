@@ -1,0 +1,80 @@
+/* Skriptorium: in der Schicht skr.theme – themes/grundschule/theme.css. */
+@layer skr.tokens, skr.base, skr.components, skr.theme, skr.extensions;
+@layer skr.theme {
+:root {
+  /* Grundton des Akzents: ein ruhiges Himmelblau statt des kräftigen Academy-Blaus. */
+  --skr-accent-base: #4a8dbf;
+
+  /* Flächen und Schrift: warmes Papier statt reinem Weiß, gedämpftes Nachtblau im
+     dunklen Schema. */
+  --skr-color-bg:        light-dark(#fffaf0, #1d2433);
+  --skr-color-bg-subtle: light-dark(#f5efe1, #262f41);
+  --skr-color-ink:       light-dark(#33404d, #e8edf3);
+  --skr-color-ink-muted: light-dark(#5c6875, #a8b3c0);
+  --skr-color-headline:  light-dark(#2b3c4e, #f3f6f9);
+  --skr-color-border:    light-dark(#e3dccb, #3b4659);
+  --skr-border-soft:     light-dark(#ece6d7, #333d50);
+  --skr-hero-bg:         light-dark(#e2eff6, #25334a);
+  --skr-topbar-bg:       light-dark(#fffdf7, #1a2130);
+  --skr-metanav-bg:      light-dark(#f3eddf, #171d2a);
+
+  /* Signalfarben weicher, aber mit genug Kontrast für Schrift. */
+  --skr-color-success: #3b8f64;
+  --skr-red: #c4524b;
+
+  /* Töne der Erweiterung: Aprikose statt Signal-Orange, Honig statt Senf. */
+  --skr-didaktikon-tone-2: light-dark(#e98a4f, color-mix(in srgb, #e98a4f 70%, #fff));
+  --skr-didaktikon-tone-3: light-dark(#e2b13c, color-mix(in srgb, #e2b13c 70%, #fff));
+  --skr-didaktikon-tone-alert: light-dark(#c4524b, color-mix(in srgb, #c4524b 60%, #fff));
+
+  /* Rundere Ecken. */
+  --skr-radius-sm: 8px;
+  --skr-radius: 12px;
+  --skr-radius-lg: 20px;
+
+  /* Kritzeleien am Rand: hell und dunkel je eine Datei – ein Hintergrundbild kennt kein
+     `light-dark()`. */
+  --grundschule-rand-links: url("rand-links.svg");
+  --grundschule-rand-rechts: url("rand-rechts.svg");
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-skr-theme="light"]) {
+    --grundschule-rand-links: url("rand-links-dunkel.svg");
+    --grundschule-rand-rechts: url("rand-rechts-dunkel.svg");
+  }
+}
+:root[data-skr-theme="dark"] {
+  --grundschule-rand-links: url("rand-links-dunkel.svg");
+  --grundschule-rand-rechts: url("rand-rechts-dunkel.svg");
+}
+
+/* Die Ränder: zwei feste Streifen links und rechts, genau so breit wie der Platz neben der
+   Inhaltsspalte – der Inhalt steht nie auf einem Bild. Unter 1200 Pixeln entfallen sie. */
+@media screen and (min-width: 1200px) {
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    width: max(0px, calc((100vw - 1120px) / 2));
+    pointer-events: none;
+    background-repeat: repeat-y;
+    background-size: min(200px, 100%) auto;
+  }
+  body::before {
+    left: 0;
+    background-image: var(--grundschule-rand-links);
+    background-position: left 12px top 0;
+  }
+  body::after {
+    right: 0;
+    background-image: var(--grundschule-rand-rechts);
+    background-position: right 12px top 0;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  body::before, body::after { display: none; }
+}
+}

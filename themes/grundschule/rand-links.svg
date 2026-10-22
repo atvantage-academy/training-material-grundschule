@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="720" viewBox="0 0 200 720">
+  <!-- Theme Grundschule: Kritzeleien für den linken Seitenrand (hell). Erzeugt, gekachelt senkrecht. -->
+  <g opacity="0.32">
+  <g stroke="#e2b13c" fill="none" stroke-width="3" stroke-linecap="round"><polygon points="60.0,34.0 64.2,44.2 75.2,45.1 66.8,52.2 69.4,62.9 60.0,57.2 50.6,62.9 53.2,52.2 44.8,45.1 55.8,44.2" stroke-linejoin="round"/></g>
+  <g stroke="#4a8dbf" fill="none" stroke-width="3" stroke-linecap="round"><text fill="#4a8dbf" x="120" y="70" font-size="34" font-family="Comic Sans MS, Chalkboard, Segoe Print, sans-serif" font-weight="700" stroke="none">1</text></g>
+  <g stroke="#5aa889" fill="none" stroke-width="3" stroke-linecap="round"><path d="M40 140 a11.2 11.2 0 0 1 14 -14 a15.399999999999999 15.399999999999999 0 0 1 28 -2.8 a11.2 11.2 0 0 1 16.799999999999997 16.799999999999997 z" stroke-linejoin="round"/></g>
+  <g stroke="#e98a4f" fill="none" stroke-width="3" stroke-linecap="round"><text fill="#e98a4f" x="140" y="190" font-size="30" font-family="Comic Sans MS, Chalkboard, Segoe Print, sans-serif" font-weight="700" stroke="none">+</text></g>
+  <g stroke="#e98a4f" fill="none" stroke-width="3" stroke-linecap="round"><ellipse cx="70" cy="240" rx="12" ry="15"/><path d="M70 255 q-6 12 2 22 q6 8 -2 16"/></g>
+  <g stroke="#e2b13c" fill="none" stroke-width="3" stroke-linecap="round"><circle cx="140" cy="300" r="13"/><line x1="158.0" y1="300.0" x2="164.0" y2="300.0"/><line x1="152.7" y1="312.7" x2="157.0" y2="317.0"/><line x1="140.0" y1="318.0" x2="140.0" y2="324.0"/><line x1="127.3" y1="312.7" x2="123.0" y2="317.0"/><line x1="122.0" y1="300.0" x2="116.0" y2="300.0"/><line x1="127.3" y1="287.3" x2="123.0" y2="283.0"/><line x1="140.0" y1="282.0" x2="140.0" y2="276.0"/><line x1="152.7" y1="287.3" x2="157.0" y2="283.0"/></g>
+  <g stroke="#5aa889" fill="none" stroke-width="3" stroke-linecap="round"><text fill="#5aa889" x="32" y="360" font-size="32" font-family="Comic Sans MS, Chalkboard, Segoe Print, sans-serif" font-weight="700" stroke="none">2</text></g>
+  <g stroke="#e98a4f" fill="none" stroke-width="3" stroke-linecap="round"><path d="M130 387.8 c-11.700000000000001 -9.1 -11.700000000000001 -20.8 0 -15.600000000000001 c11.700000000000001 -5.2 11.700000000000001 6.5 0 15.600000000000001 z" stroke-linejoin="round"/></g>
+  <g stroke="#4a8dbf" fill="none" stroke-width="3" stroke-linecap="round"><g transform="rotate(-35 40 450)"><rect x="40" y="450" width="44" height="10" rx="2"/><path d="M84 450 l12 5 l-12 5"/><line x1="48" y1="450" x2="48" y2="460"/></g></g>
+  <g stroke="#e2b13c" fill="none" stroke-width="3" stroke-linecap="round"><polygon points="150.0,499.0 152.9,506.0 160.5,506.6 154.7,511.5 156.5,518.9 150.0,515.0 143.5,518.9 145.3,511.5 139.5,506.6 147.1,506.0" stroke-linejoin="round"/></g>
+  <g stroke="#e98a4f" fill="none" stroke-width="3" stroke-linecap="round"><text fill="#e98a4f" x="50" y="560" font-size="34" font-family="Comic Sans MS, Chalkboard, Segoe Print, sans-serif" font-weight="700" stroke="none">3</text></g>
+  <g stroke="#5aa889" fill="none" stroke-width="3" stroke-linecap="round"><path d="M100 620 a8.8 8.8 0 0 1 11 -11 a12.100000000000001 12.100000000000001 0 0 1 22 -2.2 a8.8 8.8 0 0 1 13.200000000000001 13.200000000000001 z" stroke-linejoin="round"/></g>
+  <g stroke="#4a8dbf" fill="none" stroke-width="3" stroke-linecap="round"><text fill="#4a8dbf" x="142" y="680" font-size="30" font-family="Comic Sans MS, Chalkboard, Segoe Print, sans-serif" font-weight="700" stroke="none">=</text></g>
+  <g stroke="#e2b13c" fill="none" stroke-width="3" stroke-linecap="round"><polygon points="40.0,681.0 42.4,686.7 48.6,687.2 43.9,691.3 45.3,697.3 40.0,694.0 34.7,697.3 36.1,691.3 31.4,687.2 37.6,686.7" stroke-linejoin="round"/></g>
+  </g>
+</svg>

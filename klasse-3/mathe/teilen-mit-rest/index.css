@@ -1,0 +1,234 @@
+/* Teilen mit Rest: die Bonbon-Geschichte. Erst eine Einführung im Popup (Laden, Schale, los
+   geht’s), dann links Rechnung und die eine Anweisung, die gerade gilt, rechts die Szene mit
+   Laden, Schale und Tisch; im Hochformat untereinander. Aktiv und farbig ist immer nur, was
+   das Kind gerade anklicken soll. Farben und Schrift aus den Tokens von Skriptorium, Theme und
+   Erweiterung – so ziehen dunkles Farbschema und Druck mit. */
+.teilen-rest {
+  --tr-bg: var(--skr-color-bg-subtle);
+  --tr-paper: var(--skr-color-bg);
+  --tr-line: var(--skr-color-border);
+  --tr-ink: var(--skr-color-ink);
+  --tr-muted: var(--skr-color-ink-muted);
+  --tr-main: var(--skr-color-accent);
+  --tr-main-ink: var(--skr-color-accent-contrast);
+  --tr-soft: var(--skr-color-accent-soft);
+  --tr-bad: var(--skr-color-danger);
+  --tr-bad-ink: var(--skr-color-danger-ink);
+  --tr-bad-soft: color-mix(in srgb, var(--skr-color-danger) 18%, var(--skr-color-bg));
+  --tr-good-ink: var(--skr-color-success-ink);
+  --tr-sun: var(--skr-didaktikon-tone-3);
+  --tr-c1: var(--skr-color-accent);
+  --tr-c2: var(--skr-didaktikon-tone-2);
+  --tr-c3: var(--skr-didaktikon-tone-3);
+  --tr-c4: var(--skr-didaktikon-tone-4);
+  --tr-kraft: color-mix(in srgb, var(--skr-didaktikon-tone-3) 40%, var(--skr-color-bg));
+  max-width: 1040px;
+  margin: 0 auto;
+  padding-block: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  color: var(--tr-ink);
+  font-family: var(--skr-font-sans);
+  font-size: 17px;
+  line-height: 1.5;
+}
+.teilen-rest *, .teilen-rest *::before, .teilen-rest *::after { box-sizing: border-box; }
+.teilen-rest [hidden] { display: none !important; }
+
+/* Während der Einführung: kein Text, Laden und Schale noch nicht an ihrem Platz. */
+.teilen-rest.is-intro .tr-text,
+.teilen-rest.is-intro .tr-top { visibility: hidden; }
+.teilen-rest .is-away { visibility: hidden; }
+
+.teilen-rest .tr-btn { font: 800 16px/1 var(--skr-font-sans); border-radius: 12px; border: 2px solid transparent; padding: 12px 18px; cursor: pointer; }
+.teilen-rest .tr-btn--main { background: var(--tr-main); color: var(--tr-main-ink); }
+.teilen-rest .tr-btn--ghost { background: var(--tr-paper); border-color: var(--tr-line); color: var(--tr-ink); }
+.teilen-rest .tr-btn--ghost:hover { border-color: var(--tr-muted); }
+.teilen-rest button:focus-visible, .teilen-rest input:focus-visible, .teilen-rest summary:focus-visible { outline: 3px solid var(--tr-sun); outline-offset: 3px; }
+
+/* Bühne: Text und Szene */
+.teilen-rest .tr-stage { display: grid; gap: 24px; margin-top: 14px; }
+.teilen-rest .tr-text { display: flex; flex-direction: column; gap: 26px; padding-top: 10px; }
+.teilen-rest .tr-chain { font: 700 clamp(28px, 6vw, 44px)/1.2 var(--skr-font-sans); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .3em; font-variant-numeric: tabular-nums; }
+.teilen-rest .tr-chain .tr-res { border-bottom: 4px solid currentColor; min-width: 1.3em; display: inline-block; text-align: center; }
+.teilen-rest .tr-chain .tr-small { font-size: .6em; color: var(--tr-muted); }
+/* Die Zahlen der Rechnung: jede ihre Farbe, in Rechnung und Text gleich – gebraucht (a),
+   je Tüte (b), Tüten = Ergebnis (q), aus der Schale = Rest (r). Kräftiger als die „-ink“-Töne
+   der Erweiterung, aber zur Schrift hin gemischt, damit die fetten, großen Ziffern tragen. */
+.teilen-rest .tr-n-a { color: color-mix(in srgb, var(--skr-didaktikon-tone-4) 70%, var(--skr-color-ink)); }
+.teilen-rest .tr-n-b { color: var(--skr-color-accent-text); }
+.teilen-rest .tr-n-q { color: color-mix(in srgb, var(--skr-didaktikon-tone-2) 70%, var(--skr-color-ink)); }
+.teilen-rest .tr-n-r { color: var(--tr-good-ink); }
+.teilen-rest .tr-example .tr-bag__num { fill: var(--skr-color-accent-text); }
+.teilen-rest .tr-bubble { background: var(--tr-soft); border-radius: 16px; padding: 18px 20px; font-size: clamp(18px, 1.9vw, 20px); font-weight: 700; line-height: 1.55; }.teilen-rest .tr-bubble.is-bad { background: var(--tr-bad-soft); }
+.teilen-rest .tr-bubble .tr-oh { color: var(--tr-bad-ink); }
+.teilen-rest .tr-bubble .tr-final { font-size: 1.4em; }
+.teilen-rest .tr-nav { display: flex; gap: 10px; flex-wrap: wrap; }
+
+.teilen-rest .tr-scene {
+  position: relative; overflow: hidden;
+  background: var(--tr-paper); border: 2px solid var(--tr-line); border-radius: 20px;
+  padding: 18px clamp(12px, 2.5vw, 24px);
+  display: flex; flex-direction: column; gap: 18px;
+}
+.teilen-rest .tr-sources { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+/* Zwischen Laden und Schale steht der Knopf für den nächsten Schritt: im Laden „Nach Hause
+   gehen“, zuhause „Genug Bonbons!“ – immer an derselben Stelle. */
+.teilen-rest .tr-home { display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; animation: tr-pop .45s ease-out; }
+/* `max-width: none`: Die 100 % aus dem Kern fielen im inhaltsbreiten Knopf auf 0. */
+.teilen-rest .tr-home svg { flex: none; width: 22px; height: 22px; max-width: none; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.teilen-rest .tr-label { display: block; margin-top: 4px; font-weight: 800; font-size: 16px; color: var(--tr-ink); }
+
+/* Laden und Schale: aktiv nur, was gerade dran ist – das andere grau. */
+.teilen-rest .tr-shop, .teilen-rest .tr-bowl {
+  background: none; border: 0; padding: 6px; border-radius: 16px; cursor: pointer; color: inherit;
+  transition: transform .15s, filter .3s, opacity .3s;
+}
+.teilen-rest .tr-shop:hover:enabled, .teilen-rest .tr-bowl:hover:enabled { transform: translateY(-3px) scale(1.03); }
+.teilen-rest .tr-shop:disabled, .teilen-rest .tr-bowl:disabled { cursor: default; filter: grayscale(1); opacity: .4; }
+.teilen-rest .tr-shop:enabled, .teilen-rest .tr-bowl:enabled { animation: tr-call 2.4s ease-in-out 1s infinite; }
+/* In der Einführung sind die Figuren noch nicht klickbar, aber in Farbe. */
+.teilen-rest.is-intro .tr-shop:disabled, .teilen-rest.is-intro .tr-bowl:disabled { filter: none; opacity: 1; }
+.teilen-rest .tr-intro__figure > *, .teilen-rest.tr-flyer > * { animation: none; }
+.teilen-rest .tr-shop svg { display: block; width: clamp(130px, 18vw, 190px); height: auto; }
+.teilen-rest .tr-shop__wall { fill: color-mix(in srgb, var(--tr-main) 14%, var(--tr-paper)); stroke: var(--tr-main); stroke-width: 2; }
+.teilen-rest .tr-shop__stripe { fill: var(--tr-c2); }
+.teilen-rest .tr-shop__stripe--alt { fill: color-mix(in srgb, var(--tr-c2) 25%, var(--tr-paper)); }
+.teilen-rest .tr-shop__sign { fill: var(--tr-main); }
+.teilen-rest .tr-shop__name { fill: var(--tr-main-ink); font: 800 15px var(--skr-font-sans); letter-spacing: .08em; }
+.teilen-rest .tr-shop__window { fill: var(--tr-paper); stroke: var(--tr-main); stroke-width: 2; }
+.teilen-rest .tr-shop__door { fill: var(--tr-kraft); stroke: var(--tr-main); stroke-width: 2; }
+.teilen-rest .tr-shop__knob { fill: var(--tr-ink); }
+
+.teilen-rest .tr-bowl { position: relative; width: clamp(140px, 18vw, 190px); }
+.teilen-rest .tr-bowl__dish { display: block; width: 100%; height: auto; }
+.teilen-rest .tr-bowl__body { fill: var(--tr-c4); }
+.teilen-rest .tr-bowl__rim { fill: color-mix(in srgb, var(--tr-c4) 55%, var(--tr-paper)); }
+.teilen-rest .tr-bowl__candies {
+  display: flex; flex-wrap: wrap-reverse; justify-content: center; gap: 0 2px;
+  min-height: 44px; padding: 0 14px; margin-bottom: -10px; position: relative; z-index: 1;
+}
+.teilen-rest .tr-bowl__candies .tr-candy { width: 32px; }
+
+/* Bonbon und Tüte (vom Skript gezeichnet) */
+.teilen-rest .tr-candy { display: block; width: 36px; height: auto; }
+.teilen-rest .tr-candy__wrap { fill: color-mix(in srgb, currentColor 55%, var(--tr-paper)); }
+.teilen-rest .tr-candy__body { fill: currentColor; }
+.teilen-rest .tr-candy__shine { fill: none; stroke: var(--tr-paper); stroke-width: 2.5; stroke-linecap: round; opacity: .8; }
+.teilen-rest .tr-c1 { color: var(--tr-c1); fill: var(--tr-c1); }
+.teilen-rest .tr-c2 { color: var(--tr-c2); fill: var(--tr-c2); }
+.teilen-rest .tr-c3 { color: var(--tr-c3); fill: var(--tr-c3); }
+.teilen-rest .tr-c4 { color: var(--tr-c4); fill: var(--tr-c4); }
+.teilen-rest .tr-bag { display: block; width: clamp(48px, 6vw, 64px); height: auto; }
+.teilen-rest .tr-bag__body { fill: var(--tr-kraft); stroke: color-mix(in srgb, var(--tr-kraft) 60%, var(--tr-ink)); stroke-width: 2; stroke-linejoin: round; }
+.teilen-rest .tr-bag__fold { fill: color-mix(in srgb, var(--tr-kraft) 75%, var(--tr-ink)); }
+.teilen-rest .tr-bag__label { fill: var(--tr-paper); }
+.teilen-rest .tr-bag__num { fill: var(--tr-ink); font: 800 20px var(--skr-font-sans); }
+
+/* Tisch */
+.teilen-rest .tr-table {
+  min-height: 170px; border-radius: 16px; padding: 14px;
+  background: var(--tr-bg); border: 2px dashed var(--tr-line);
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 22px;
+}
+.teilen-rest .tr-goods { display: flex; flex-wrap: wrap; align-items: end; justify-content: center; gap: 10px 18px; }
+.teilen-rest .tr-bags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 380px; }
+.teilen-rest .tr-singles { display: flex; flex-wrap: wrap; gap: 2px; max-width: 130px; align-content: end; }
+.teilen-rest .tr-bags > *, .teilen-rest .tr-singles > * { animation: tr-pop .45s ease-out; }
+.teilen-rest .tr-bags > .is-wrong, .teilen-rest .tr-singles > .is-wrong {
+  border-radius: 10px; outline: 3px solid var(--tr-bad); outline-offset: 2px; background: var(--tr-bad-soft);
+  animation: tr-shake .5s ease-in-out 2;
+}
+.teilen-rest .tr-total { font: 800 clamp(26px, 4vw, 40px)/1.1 var(--skr-font-sans); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.teilen-rest .tr-total .tr-total__part { color: var(--tr-muted); font-size: .7em; }
+.teilen-rest .tr-total.is-new { animation: tr-pop .45s ease-out; }
+
+/* Lob */
+.teilen-rest .tr-praise { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.teilen-rest .tr-praise div {
+  font: 800 clamp(34px, 6vw, 60px)/1 var(--skr-font-sans); color: var(--tr-sun); text-align: center; padding: 0 12px;
+  text-shadow: 0 3px 0 var(--tr-paper), 0 0 18px var(--tr-paper); animation: tr-praise 1.6s ease-out both;
+}
+.teilen-rest .tr-praise .tr-oh-big { color: var(--tr-bad); }
+.teilen-rest .tr-star { position: absolute; color: var(--tr-sun); font-size: 26px; animation: tr-star 1.2s ease-out both; }
+
+/* Popups: Einführung und Fragen */
+.teilen-rest .tr-dialog {
+  border: 0; border-radius: 20px; padding: 22px 24px; max-width: min(92vw, 460px);
+  background: var(--tr-paper); color: var(--tr-ink); box-shadow: 0 18px 50px rgb(0 0 0 / .25);
+}
+.teilen-rest .tr-dialog::backdrop { background: color-mix(in srgb, var(--skr-color-bg) 40%, transparent); backdrop-filter: blur(2px); }
+.teilen-rest .tr-dialog__q { margin: 0 0 14px; font-size: 22px; font-weight: 800; line-height: 1.3; }
+/* Was auf dem Tisch liegt, im Popup zum Abzählen. */
+.teilen-rest .tr-dialog__figure { display: flex; flex-wrap: wrap; align-items: end; justify-content: center; gap: 8px 14px; margin-bottom: 16px; }
+.teilen-rest .tr-dialog__bags, .teilen-rest .tr-dialog__singles { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; align-items: end; }
+.teilen-rest .tr-dialog__figure .tr-bag { width: 52px; }
+.teilen-rest .tr-dialog__figure .tr-candy { width: 30px; }
+.teilen-rest .tr-dialog__row { display: flex; gap: 10px; align-items: center; }
+.teilen-rest .tr-dialog__hint { margin: 10px 0 0; min-height: 1.4em; font-weight: 700; color: var(--tr-bad-ink); }
+.teilen-rest input[type=number] {
+  width: 84px; font: 700 28px/1 var(--skr-font-sans); padding: 6px 8px; text-align: center;
+  border: 2px solid var(--tr-line); border-radius: 12px; background: var(--tr-paper); color: var(--tr-ink);
+  -moz-appearance: textfield;
+}
+.teilen-rest input[type=number]::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.teilen-rest .tr-intro { text-align: center; padding: 28px 28px 24px; }
+.teilen-rest .tr-intro__figure { display: grid; place-items: center; min-height: 40px; cursor: pointer; }
+.teilen-rest .tr-intro__figure > * { width: min(260px, 60vw); pointer-events: none; animation: tr-pop .5s ease-out; }
+.teilen-rest .tr-intro__figure svg { width: 100%; height: auto; }
+.teilen-rest .tr-intro__figure .tr-label { display: none; }
+.teilen-rest .tr-intro__text { margin: 18px 0 20px; font-size: 22px; font-weight: 700; line-height: 1.4; text-wrap: balance; }
+/* Das Beispiel: die Rechnung, darunter Tüten + einzelne Bonbons = Summe in einer Zeile. */
+.teilen-rest .tr-intro__figure > .tr-example { width: auto; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.teilen-rest .tr-example__eq { margin: 0; font: 800 36px/1.1 var(--skr-font-sans); font-variant-numeric: tabular-nums; }
+.teilen-rest .tr-example__eq .tr-small { font-size: .6em; color: var(--tr-muted); }
+.teilen-rest .tr-example__picture { display: flex; flex-wrap: wrap; align-items: end; justify-content: center; gap: 6px 10px; }
+.teilen-rest .tr-intro__text b { font-size: 1.15em; }
+.teilen-rest .tr-example__bags, .teilen-rest .tr-example__singles { display: flex; gap: 6px; align-items: end; }
+.teilen-rest .tr-example .tr-bag { width: 52px; }
+.teilen-rest .tr-example .tr-candy { width: 32px; }
+.teilen-rest .tr-example__plus, .teilen-rest .tr-example__sum { font: 800 30px/1 var(--skr-font-sans); padding-bottom: 14px; }
+.teilen-rest .tr-intro:has(.tr-example) { max-width: min(92vw, 540px); }
+.teilen-rest .tr-intro:has(.tr-example) .tr-intro__text { font-size: 20px; }
+.teilen-rest .tr-intro .tr-btn { font-size: 18px; padding: 14px 26px; }
+/* Die Figur fliegt aus dem Popup an ihren Platz (Skript: Web Animations). Der Flieger hängt
+   am <body> – außerhalb jedes verschobenen Vorfahren – und trägt die Wurzelklasse für seine
+   Farben; deren Satzspiegel nimmt er zurück. */
+.teilen-rest.tr-flyer {
+  position: fixed; z-index: 10; display: block; margin: 0; padding: 0; max-width: none;
+  pointer-events: none; transform-origin: top left;
+}
+.teilen-rest.tr-flyer > * { width: 100%; animation: none; }
+.teilen-rest.tr-flyer svg { width: 100%; height: auto; }
+.teilen-rest.tr-flyer .tr-label { display: none; }
+
+/* Kopfleiste über der Aufgabe: eigene Aufgabe eingeben (für Hausaufgaben), rechts leise
+   „Erklärungen erneut anzeigen“. */
+.teilen-rest .tr-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; }
+.teilen-rest .tr-setup { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; }
+.teilen-rest .tr-setup__label { font-weight: 800; font-size: 18px; }
+.teilen-rest .tr-op { font: 800 32px/1 var(--skr-font-sans); color: var(--tr-ink); }
+.teilen-rest .tr-warn { flex-basis: 100%; color: var(--tr-bad-ink); font-weight: 700; margin: 0; }
+.teilen-rest .tr-link {
+  background: none; border: 0; padding: 0; cursor: pointer;
+  font: 700 16px/1.5 var(--skr-font-sans); color: var(--tr-muted); text-decoration: underline; text-underline-offset: 3px;
+}
+.teilen-rest .tr-link:hover { color: var(--tr-ink); }
+
+/* Querformat: Anweisung links neben der Szene, beides auf einen Blick. */
+@media (min-width: 860px) and (orientation: landscape) {
+  .teilen-rest .tr-stage { grid-template-columns: minmax(320px, 5fr) 7fr; align-items: start; gap: 32px; }
+  .teilen-rest .tr-text { position: sticky; top: 16px; }
+  .teilen-rest .tr-table { min-height: 220px; }
+}
+
+@keyframes tr-pop { 0% { transform: scale(.3); opacity: 0; } 60% { transform: scale(1.15); opacity: 1; } 100% { transform: scale(1); } }
+@keyframes tr-call { 0%, 80%, 100% { transform: none; } 88% { transform: translateY(-6px) rotate(-2deg); } 94% { transform: translateY(0) rotate(2deg); } }
+@keyframes tr-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px) rotate(-4deg); } 75% { transform: translateX(6px) rotate(4deg); } }
+@keyframes tr-praise { 0% { opacity: 0; transform: scale(.4) rotate(-6deg); } 18% { opacity: 1; transform: scale(1.1) rotate(2deg); } 30% { transform: scale(1) rotate(0); } 80% { opacity: 1; } 100% { opacity: 0; transform: translateY(-30px); } }
+@keyframes tr-star { from { opacity: 1; transform: translate(0, 0) scale(.5); } to { opacity: 0; transform: translate(var(--x), var(--y)) scale(1.3) rotate(180deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .teilen-rest *, .teilen-rest *::before, .teilen-rest *::after { animation-duration: .01s !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition: none !important; }
+}
